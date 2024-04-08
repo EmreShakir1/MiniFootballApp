@@ -13,11 +13,29 @@ namespace MiniFootballApp.Infrastucture.Data
     {
         public MiniFootballDbContext(DbContextOptions<MiniFootballDbContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Match>()
+                .HasOne(m => m.HomeTeam)
+                .WithMany(ht => ht.HomeMatches)
+                .HasForeignKey(m => m.HomeTeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Match>()
+                .HasOne(m => m.AwayTeam)
+                .WithMany(at => at.AwayMatches)
+                .HasForeignKey(m => m.AwayTeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Player>()
+                .HasOne(p => p.Team)
+                .WithMany(t=>t.Players)
+                .HasForeignKey(p=> p.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(builder);
         }
 

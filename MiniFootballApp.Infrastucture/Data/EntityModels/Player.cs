@@ -1,29 +1,23 @@
-﻿using Microsoft.AspNetCore.Identity;
-using MiniFootballApp.Infrastucture.Data.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MiniFootballApp.Infrastucture.Data.Enumerations;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniFootballApp.Infrastucture.Data.EntityModels
 {
     public class Player
     {
+        [Key]
         public int Id { get; set; }
-
-        public string FullName { get; set; } = string.Empty;
-
-        public int Age { get; set; }
 
         public int KitNumber { get; set; }
 
         public Position Position { get; set; }
 
+        public int? TeamId { get; set; }
+
+        [ForeignKey(nameof(TeamId))]
         public Team Team { get; set; } = null!;
 
-        public IdentityUser IdentityUser { get; set; } = null!;
-
-        public string UserId { get; set; } = string.Empty;
+        public ApplicaitonUser ApplicaitonUser { get; set; } = null!;
     }
 }
