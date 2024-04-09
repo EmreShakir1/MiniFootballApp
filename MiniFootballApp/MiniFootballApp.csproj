@@ -24,4 +24,9 @@
     <ProjectReference Include="..\MiniFootballApp.Core\MiniFootballApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Attributes\" />
+  </ItemGroup>
+
 </Project>
