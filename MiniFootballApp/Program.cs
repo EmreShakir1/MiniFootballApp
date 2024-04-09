@@ -4,17 +4,13 @@ using MiniFootballApp.Infrastucture.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddApplicationDbContext(builder.Configuration);
 
-builder.Services.AddDbContext<MiniFootballDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddApplicationIdentity(builder.Configuration);
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<MiniFootballDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddApplicationService();
 
 var app = builder.Build();
 
@@ -38,9 +34,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
-app.Run();
+await app.RunAsync();
