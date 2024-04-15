@@ -16,8 +16,11 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         public int? TeamId { get; set; }
 
         [ForeignKey(nameof(TeamId))]
-        public Team Team { get; set; } = null!;
+        public Team? Team { get; set; }
 
-        public ApplicaitonUser ApplicaitonUser { get; set; } = null!;
+        public string UserId { get; set; } = string.Empty;
+
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser? ApplicaitonUser { get; set; }
     }
 }

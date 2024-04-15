@@ -28,10 +28,9 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -226,15 +225,15 @@ namespace MiniFootballApp.Infrastucture.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KitNumber = table.Column<int>(type: "int", nullable: false),
                     Position = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    ApplicaitonUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Players_AspNetUsers_ApplicaitonUserId",
-                        column: x => x.ApplicaitonUserId,
+                        name: "FK_Players_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -317,14 +316,14 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 column: "StadiumId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Players_ApplicaitonUserId",
-                table: "Players",
-                column: "ApplicaitonUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",
                 table: "Players",
                 column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_UserId",
+                table: "Players",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stadiums_LocationId",
@@ -364,7 +363,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Players_AspNetUsers_ApplicaitonUserId",
+                name: "FK_Players_AspNetUsers_UserId",
                 table: "Players");
 
             migrationBuilder.DropForeignKey(

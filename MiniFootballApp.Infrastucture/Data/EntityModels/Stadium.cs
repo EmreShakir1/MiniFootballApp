@@ -14,6 +14,8 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
 
         public int Capacity { get; set; }
 
+        public int LocationId { get; set; }
+
         public Location Location { get; set; } = null!;
     }
 }

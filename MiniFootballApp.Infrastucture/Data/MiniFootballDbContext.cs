@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
+using MiniFootballApp.Infrastucture.Data.SeedDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MiniFootballApp.Infrastucture.Data
 {
-    public class MiniFootballDbContext : IdentityDbContext
+    public class MiniFootballDbContext : IdentityDbContext<ApplicationUser>
     {
         public MiniFootballDbContext(DbContextOptions<MiniFootballDbContext> options) : base(options)
         {
@@ -35,6 +37,13 @@ namespace MiniFootballApp.Infrastucture.Data
                 .WithMany(t=>t.Players)
                 .HasForeignKey(p=> p.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.ApplyConfiguration(new LocationConfiguration());
+            builder.ApplyConfiguration(new StadiumConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new PlayerConfiguration());
+            builder.ApplyConfiguration(new TeamConfiguration());
+            //builder.ApplyConfiguration(new MatchConfiguration());
 
             base.OnModelCreating(builder);
         }

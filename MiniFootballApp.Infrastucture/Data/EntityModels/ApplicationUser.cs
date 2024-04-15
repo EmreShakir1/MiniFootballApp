@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MiniFootballApp.Infrastucture.Data.EntityModels
 {
-    public class ApplicaitonUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [Required]
         public string FirstName { get; set; } = string.Empty;
