@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MiniFootballApp.Infrastucture.Data;
 using MiniFootballApp.Infrastucture.Data.Common;
+using MiniFootballApp.Infrastucture.Data.EntityModels;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -26,15 +27,14 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDefaultIdentity<ApplicationIdentity>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedPhoneNumber = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-            })
-                .AddEntityFrameworkStores<MiniFootballDbContext>();
+            }).AddEntityFrameworkStores<MiniFootballDbContext>();
 
             return services;
         }
