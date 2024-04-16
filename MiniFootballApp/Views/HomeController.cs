@@ -5,9 +5,5 @@ namespace MiniFootballApp.Views
 {
     public class HomeController : AdminController
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

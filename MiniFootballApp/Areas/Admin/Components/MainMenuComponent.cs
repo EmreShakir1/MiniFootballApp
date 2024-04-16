@@ -2,7 +2,7 @@
 
 namespace MiniFootballApp.Components
 {
-    public class MainMenuComponent : ViewComponent
+    public class AdminMenuComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
