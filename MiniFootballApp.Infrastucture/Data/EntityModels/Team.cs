@@ -10,18 +10,21 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
 {
     public class Team
     {
+        [Key]
         public int Id { get; set; }
 
+        [MaxLength(30)]
         public string Name { get; set; } = string.Empty;
 
+        [Required]
         public string LogoUrl { get; set; } = string.Empty;
 
         public bool IsApproved { get; set; }
 
         [Required]
-        public int CapitanId { get; set; }
+        public int CaptainId { get; set; }
 
-        [ForeignKey(nameof(CapitanId))]
+        [ForeignKey(nameof(CaptainId))]
         public Player Captain { get; set; } = null!;
 
         public IList<Match> HomeMatches { get; set; } = new List<Match>();

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniFootballApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using MiniFootballApp.Infrastucture.Data;
 namespace MiniFootballApp.Infrastucture.Migrations
 {
     [DbContext(typeof(MiniFootballDbContext))]
-    partial class MiniFootballDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416201307_UpdatedColumn")]
+    partial class UpdatedColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -339,7 +341,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Locations");
 
                     b.HasData(
                         new
@@ -396,7 +398,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("StadiumId");
 
-                    b.ToTable("Matches", (string)null);
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Player", b =>
@@ -426,7 +428,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
 
                     b.HasData(
                         new
@@ -482,7 +484,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Stadiums", (string)null);
+                    b.ToTable("Stadiums");
 
                     b.HasData(
                         new
@@ -528,7 +530,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("CaptainId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

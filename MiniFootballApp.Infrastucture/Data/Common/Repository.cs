@@ -30,5 +30,15 @@ namespace MiniFootballApp.Infrastucture.Data.Common
         {
             return DbSet<T>().AsNoTracking().AsQueryable();
         }
+
+        public async Task AddAsync<T>(T item) where T : class
+        {
+            await DbSet<T>().AddAsync(item);
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await dbContext.SaveChangesAsync();
+        }
     }
 }

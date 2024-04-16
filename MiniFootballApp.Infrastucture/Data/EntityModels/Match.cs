@@ -16,10 +16,12 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         [Required]
         public DateTime StartingTime { get; set; }
 
+        [MaxLength(50)]
         public string RefereeName { get; set; } = string.Empty;
 
         public bool IsPlayed { get; set; }
 
+        [MaxLength(10)]
         public string? Result { get; set; }
 
         [Required]

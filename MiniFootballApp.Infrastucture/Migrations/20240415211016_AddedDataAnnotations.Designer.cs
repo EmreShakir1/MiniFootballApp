@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniFootballApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using MiniFootballApp.Infrastucture.Data;
 namespace MiniFootballApp.Infrastucture.Migrations
 {
     [DbContext(typeof(MiniFootballDbContext))]
-    partial class MiniFootballDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240415211016_AddedDataAnnotations")]
+    partial class AddedDataAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,7 +244,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "3091a5c6-7004-42ae-86b3-191578b7e8a6",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "db25909c-13a4-4de0-8643-ad0013cd41e3",
+                            ConcurrencyStamp = "dbcd6c6b-ca87-479b-bc6a-eb98430741a6",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -250,10 +252,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN/ZZusbWHEQC9EgXqlPlNKVMQ+BvSrA/1uAslrHOKW2/AhoCU4aCOXgXxKCL3Lmhg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHuZ1hhU9q+Iv39nMuz03IbRqQ6uFxHawpf2IRr3/A+nThTzP1DhKdjpj/wXE6oLGA==",
                             PhoneNumber = "+359888654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1fb00096-697f-4a60-88cf-8cc3534d40c4",
+                            SecurityStamp = "29073bc9-aeda-49cf-9fc0-4271d7412929",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         },
@@ -262,7 +264,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "fba1d28a-2a5a-4ebf-86c9-eb93337731d0",
                             AccessFailedCount = 0,
                             Age = 20,
-                            ConcurrencyStamp = "255f562a-0c53-4039-afe5-81eba74878c7",
+                            ConcurrencyStamp = "907eea70-846a-45cb-8d6e-c59843f61daf",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Guest",
@@ -270,10 +272,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHpuHxh/A08y1WIv5m2u9cAJCKG0SafmFaUc5pq7uaDH2FhrakvpiObD4Nzap4lztQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIkbAoweTRTMNXCFzt6T3bzoFvSjvdCtI84u+wOVqjWMEHLRimHezqHxRrPJBnlwUg==",
                             PhoneNumber = "+359888123456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "caa12438-1b54-4348-b659-7bcba14feb07",
+                            SecurityStamp = "eb9ebaa2-c3cd-4b29-bb4a-cfd31c31d9ef",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
@@ -282,7 +284,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "5ed99122-41b0-4c33-926f-a2c7fc6e6465",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "80fab968-98e1-4f0c-82bc-ee6586d82323",
+                            ConcurrencyStamp = "b3e860c1-5479-41b5-bc4b-83a80ce98601",
                             Email = "player3@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Player3",
@@ -290,10 +292,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "PLAYER3@MAIL.COM",
                             NormalizedUserName = "PLAYER3@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIOh9h2X2Y/QDAXY7F7iF7aDE6j5oRGcDCNKRp9T+VP8OqjGsFeZsprBGsG2epVe3Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIzOycSobwfqDog41DItibMCHPDXb3Igyef4r0eYc6B9QTLBsW/wYc91Y9K2fH6qVg==",
                             PhoneNumber = "+359888654322",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa60bef6-83e7-4070-93c8-56a00544bc21",
+                            SecurityStamp = "b90f001d-e58d-45e0-9045-f5cf09e152a8",
                             TwoFactorEnabled = false,
                             UserName = "player3@mail.com"
                         },
@@ -302,7 +304,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "f3e37fdb-818a-46ec-ad1e-4d6a3399a1a1",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "1b26652b-225e-485d-8c0a-b878692d621f",
+                            ConcurrencyStamp = "f092297a-9413-44aa-bcd8-325bb028ca52",
                             Email = "player4@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Player4",
@@ -310,10 +312,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "PLAYER4@MAIL.COM",
                             NormalizedUserName = "PLAYER4@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIvfJVXEvoHH4i1JLiQK/5VkgvB7pqlfjGkcvElybFeaURr392ZUYp2o8ZIeSh/pXg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJSFmB2qz5ofMDX0n1GnEJpOoaAUnoopbpUvA4Xq+cEr4i6POaVZzgvWEOvwQksPVQ==",
                             PhoneNumber = "+359888654323",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "105aae00-46ad-459f-ab67-381bb9ecaf93",
+                            SecurityStamp = "7ec7d4c7-521f-4b6d-bc76-76ff7578db24",
                             TwoFactorEnabled = false,
                             UserName = "player4@mail.com"
                         });
@@ -339,7 +341,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Locations");
 
                     b.HasData(
                         new
@@ -396,7 +398,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("StadiumId");
 
-                    b.ToTable("Matches", (string)null);
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Player", b =>
@@ -426,7 +428,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
 
                     b.HasData(
                         new
@@ -482,7 +484,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Stadiums", (string)null);
+                    b.ToTable("Stadiums");
 
                     b.HasData(
                         new
@@ -509,7 +511,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CaptainId")
+                    b.Property<int>("CapitanId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsApproved")
@@ -526,9 +528,9 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CaptainId");
+                    b.HasIndex("CapitanId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -642,7 +644,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 {
                     b.HasOne("MiniFootballApp.Infrastucture.Data.EntityModels.Player", "Captain")
                         .WithMany()
-                        .HasForeignKey("CaptainId")
+                        .HasForeignKey("CapitanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

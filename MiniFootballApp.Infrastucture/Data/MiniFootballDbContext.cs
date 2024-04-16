@@ -42,7 +42,7 @@ namespace MiniFootballApp.Infrastucture.Data
             builder.ApplyConfiguration(new StadiumConfiguration());
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
             builder.ApplyConfiguration(new PlayerConfiguration());
-            builder.ApplyConfiguration(new TeamConfiguration());
+            //builder.ApplyConfiguration(new TeamConfiguration());
             //builder.ApplyConfiguration(new MatchConfiguration());
 
             base.OnModelCreating(builder);

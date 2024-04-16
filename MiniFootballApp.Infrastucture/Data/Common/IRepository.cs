@@ -11,5 +11,9 @@ namespace MiniFootballApp.Infrastucture.Data.Common
         IQueryable<T> All<T>() where T : class;
         
         IQueryable<T> AllReadOnly<T>() where T : class;   
+
+        Task AddAsync<T>(T item) where T : class;
+
+        Task<int> SaveChangesAsync();
     }
 }

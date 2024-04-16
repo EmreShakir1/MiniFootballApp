@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
 using MiniFootballApp.Infrastucture.Data.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using static MiniFootballApp.Infrastucture.Constants.RoleConstants;
 
 namespace MiniFootballApp.Infrastucture.Data.SeedDB
 {
@@ -58,6 +53,7 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
         public ApplicationUser UserAdmin { get; set; } = null!;
         public ApplicationUser UserPlayer3 { get; set; } = null!;
         public ApplicationUser UserPlayer4 { get; set; } = null!;
+
 
         private void SeedLocation()
         {
@@ -204,7 +200,7 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
                 Id = 1,
                 Name = "Manchester UTD",
                 LogoUrl = "https://marketplace.canva.com/EAFIdGdKVWc/1/0/1600w/canva-red-minimalist-skull-warrior-illustration-gaming-logo-w5IuEYm6TJM.jpg",
-                CapitanId = Player1.Id,
+                CaptainId = Player1.Id,
                 IsApproved = true,
                 
             };
@@ -214,7 +210,7 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
                 Id = 2,
                 Name = "Chelsi",
                 LogoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1fL_BDbcPCdYuxn8tyAYHjW0-UGGBbbxWdbF4b5Y12Q&s",
-                CapitanId = Player2.Id,
+                CaptainId = Player2.Id,
                 IsApproved = true,
             };
         }

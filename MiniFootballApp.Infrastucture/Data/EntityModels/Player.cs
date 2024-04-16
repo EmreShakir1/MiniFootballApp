@@ -9,8 +9,10 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public int KitNumber { get; set; }
 
+        [Required]
         public Position Position { get; set; }
 
         public int? TeamId { get; set; }
@@ -21,6 +23,6 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         public string UserId { get; set; } = string.Empty;
 
         [ForeignKey(nameof(UserId))]
-        public ApplicationUser? ApplicaitonUser { get; set; }
+        public ApplicationUser ApplicaitonUser { get; set; } = null!;
     }
 }

@@ -13,9 +13,11 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(40)]
         public string Address { get; set; } = string.Empty;
 
-        [Required]  
+        [Required]
+        [MaxLength(25)]
         public string Country { get; set; } = string.Empty;
     }
 }
