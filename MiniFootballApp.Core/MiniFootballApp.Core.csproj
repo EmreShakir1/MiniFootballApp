@@ -10,10 +10,4 @@
     <ProjectReference Include="..\MiniFootballApp.Infrastucture\MiniFootballApp.Infrastucture.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
