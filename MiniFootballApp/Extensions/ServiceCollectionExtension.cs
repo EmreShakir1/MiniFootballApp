@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MiniFootballApp.Core.Contracts;
+using MiniFootballApp.Core.Services;
 using MiniFootballApp.Infrastucture.Data;
 using MiniFootballApp.Infrastucture.Data.Common;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
@@ -7,8 +10,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddApplicationService(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ITeamService, TeamService>();
+
             return services;
         }
 
@@ -34,7 +40,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-            }).AddEntityFrameworkStores<MiniFootballDbContext>();
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<MiniFootballDbContext>();
 
             return services;
         }

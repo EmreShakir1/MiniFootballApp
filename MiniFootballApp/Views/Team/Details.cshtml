@@ -1,0 +1,43 @@
+﻿@using MiniFootballApp.Core.Models.Team;
+
+@model TeamDetailsServiceModel
+
+@{
+    ViewBag.Title = "Team Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.LogoUrl" alt="Team Image">
+        <div class="card-body text-center">
+            <h4>@Model.Name</h4>
+            <h6>@Model.CapitanName</h6>
+        </div>
+    </div>
+</div>
+
+<h2>Team Players</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Kit Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model.Players)
+        {
+            <tr>
+                <td>@player.Name</td>
+                <td>@player.Position.ToString()</td>
+                <td>@player.KitNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>

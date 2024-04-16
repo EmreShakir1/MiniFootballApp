@@ -1,0 +1,21 @@
+﻿@using MiniFootballApp.Core.Models.Team
+@inject IPlayerService playerService;
+
+@model TeamServiceModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.LogoUrl" alt="Team Image">
+        <div class="card-body text-center">
+            <h4>@Model.Name</h4>
+            <h6>@Model.CapitanName</h6>
+            <a asp-area="" asp-controller="Team" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+            @if (await playerService.PlayerIsInTeamAsync(User.Id()) == false && await playerService.IsPlayerAsync(User.Id()))
+            {
+                <a asp-area="" asp-action="Join" asp-route-id="@Model.Id"
+                   class="btn btn-success">Join</a>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using MiniFootballApp.Core.Models.Player;
+
+@model BecomePlayerFormModel
+
+@{
+    ViewBag.Title = "Become Player!";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="KitNumber"></label>
+                <input asp-for="KitNumber" class="form-control">
+                <span asp-validation-for="KitNumber" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Position"></label>
+                <select asp-for="Position" class="form-control">
+                    <option value="Forward">Forward</option>
+                    <option value="Midfielder">Midfielder</option>
+                    <option value="Defender">Defender</option>
+                    <option value="Goalkeeper">Goalkeeper</option>
+                </select>
+                <span asp-validation-for="Position" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeamId"></label>
+                <select asp-for="TeamId" class="form-control">
+                    <option value="">I will create my own</option>
+
+                    @foreach (var team in Model.Teams)
+                    {
+                        <option value="@team.Id">@team.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TeamId" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3 " type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
