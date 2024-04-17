@@ -2,15 +2,25 @@
 @using MiniFootballApp.Core.Contracts;
 @using MiniFootballApp.Infrastucture.Data.EntityModels;
 @using System.Security.Claims;
+@using static MiniFootballApp.Areas.Admin.Constants.AdminConstants;
 
-
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
 @inject IPlayerService playerService;
 
+@{
+    var user = await userManager.GetUserAsync(User);
+}
+
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (signInManager.IsSignedIn(User))
     {
+        @if (await userManager.IsInRoleAsync(user,AdminRole))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Panel">Administrator Panel</a>
+            </li>
+        }
         @if (await playerService.IsPlayerAsync(User.Id()) == false)
         {
             <li class="nav-item">
