@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static MiniFootballApp.Areas.Admin.Constants.AdminConstants;
 
 namespace MiniFootballApp.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Route("/Admin/[controller]/[action]/{id>}")]
-    [Authorize(Roles = "Administrator")]
+    [Area(AdminArea)]
+    [Route("/Admin/[controller]/[action]/{id?}")]
+    [Authorize(Roles = AdminRole)]
     public class AdminController : Controller
     {
         public IActionResult Index()

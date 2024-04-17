@@ -18,7 +18,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @await Component.InvokeAsync(nameof(MainMenuComponent))
+                    @await Component.InvokeAsync(nameof(AdminMenuComponent))
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - MiniFootballApp
+            <label class="text-danger">This is admin area</label>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
