@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static MiniFootballApp.Infrastucture.Constants.DataConstants;
 
 namespace MiniFootballApp.Infrastucture.Data.EntityModels
 {
+    [Comment("Football stadium")]
     public class Stadium
     {
         [Key]
+        [Comment("Identifier of the stadium")]
         public int Id { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(StadiumNameMaxLength)]
+        [Comment("Name of the stadium")]
+        [Required]
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [Comment("Spactators capacity of stadium")]
         public int Capacity { get; set; }
 
         [Required]
+        [Comment("Identifier for location")]
         public int LocationId { get; set; }
 
         [ForeignKey(nameof(LocationId))]
+        [Comment("Property for location")]
         public Location Location { get; set; } = null!;
     }
 }
