@@ -168,7 +168,8 @@ namespace MiniFootballApp.Infrastucture.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Age")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Age of the application user");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -184,12 +185,14 @@ namespace MiniFootballApp.Infrastucture.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasComment("First name of the application user");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(25)")
+                        .HasComment("Last name of the application user");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -236,13 +239,15 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
+                    b.HasComment("The user of the application");
+
                     b.HasData(
                         new
                         {
                             Id = "3091a5c6-7004-42ae-86b3-191578b7e8a6",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "db25909c-13a4-4de0-8643-ad0013cd41e3",
+                            ConcurrencyStamp = "249da6d9-1bd3-4b87-a99f-0cac2542b865",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -250,10 +255,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN/ZZusbWHEQC9EgXqlPlNKVMQ+BvSrA/1uAslrHOKW2/AhoCU4aCOXgXxKCL3Lmhg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFzdxFGo9tM8+5ArEynvIuFLVYY7CJauQ5cZYb3qHj+ZJLK+iv0XNhazdKI2DuaJKg==",
                             PhoneNumber = "+359888654321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1fb00096-697f-4a60-88cf-8cc3534d40c4",
+                            SecurityStamp = "6d01030d-a563-4e79-9639-edfe5ea2874d",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         },
@@ -262,7 +267,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "fba1d28a-2a5a-4ebf-86c9-eb93337731d0",
                             AccessFailedCount = 0,
                             Age = 20,
-                            ConcurrencyStamp = "255f562a-0c53-4039-afe5-81eba74878c7",
+                            ConcurrencyStamp = "11377a7a-a37a-4f4f-94f6-3eb5ca4cb8a0",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Guest",
@@ -270,10 +275,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHpuHxh/A08y1WIv5m2u9cAJCKG0SafmFaUc5pq7uaDH2FhrakvpiObD4Nzap4lztQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGGZWzNkD5U4tiR50/Tpz6beM2/KrcQJzB0+8SEitUW4aIq5rUkg07HaU2SgLFXAbw==",
                             PhoneNumber = "+359888123456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "caa12438-1b54-4348-b659-7bcba14feb07",
+                            SecurityStamp = "56465c96-73c7-441a-b128-a03d8f7a2d1f",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
@@ -282,7 +287,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "5ed99122-41b0-4c33-926f-a2c7fc6e6465",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "80fab968-98e1-4f0c-82bc-ee6586d82323",
+                            ConcurrencyStamp = "365ab29a-b328-443b-9799-385b44ac732c",
                             Email = "player3@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Player3",
@@ -290,10 +295,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "PLAYER3@MAIL.COM",
                             NormalizedUserName = "PLAYER3@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIOh9h2X2Y/QDAXY7F7iF7aDE6j5oRGcDCNKRp9T+VP8OqjGsFeZsprBGsG2epVe3Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHJXsdOX+4ZkfWrtusFFwya918WlROsRwdExe5mNQcy6ekPC/dzdDyHzEbDdvpf7Uw==",
                             PhoneNumber = "+359888654322",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa60bef6-83e7-4070-93c8-56a00544bc21",
+                            SecurityStamp = "6987de3c-1dce-4f7b-8e7c-df9767821b79",
                             TwoFactorEnabled = false,
                             UserName = "player3@mail.com"
                         },
@@ -302,7 +307,7 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             Id = "f3e37fdb-818a-46ec-ad1e-4d6a3399a1a1",
                             AccessFailedCount = 0,
                             Age = 25,
-                            ConcurrencyStamp = "1b26652b-225e-485d-8c0a-b878692d621f",
+                            ConcurrencyStamp = "07cb06bd-b117-4e22-9fc3-f58ae74f8250",
                             Email = "player4@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Player4",
@@ -310,10 +315,10 @@ namespace MiniFootballApp.Infrastucture.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "PLAYER4@MAIL.COM",
                             NormalizedUserName = "PLAYER4@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIvfJVXEvoHH4i1JLiQK/5VkgvB7pqlfjGkcvElybFeaURr392ZUYp2o8ZIeSh/pXg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBQmar5W6kPI4vwNPwlWUnJkQ4KYDoTzI1c3cHe2PdJrFeuXLkLrLjl8EWnVuuqHuQ==",
                             PhoneNumber = "+359888654323",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "105aae00-46ad-459f-ab67-381bb9ecaf93",
+                            SecurityStamp = "9d637dce-9c28-4e56-a3ab-5e0269530fc3",
                             TwoFactorEnabled = false,
                             UserName = "player4@mail.com"
                         });
@@ -323,23 +328,28 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of location");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasComment("Address of the location");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasComment("Country of the location");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Locations");
+
+                    b.HasComment("Location of stadium in the app");
 
                     b.HasData(
                         new
@@ -360,33 +370,41 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of match");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AwayTeamId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of away team");
 
                     b.Property<int>("HomeTeamId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of home team");
 
                     b.Property<bool>("IsPlayed")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Does the match is played");
 
                     b.Property<string>("RefereeName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)")
+                        .HasComment("Name of referee");
 
                     b.Property<string>("Result")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)")
+                        .HasComment("Result of the match");
 
                     b.Property<int>("StadiumId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of stadium");
 
                     b.Property<DateTime>("StartingTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Date of the match");
 
                     b.HasKey("Id");
 
@@ -396,29 +414,36 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("StadiumId");
 
-                    b.ToTable("Matches", (string)null);
+                    b.ToTable("Matches");
+
+                    b.HasComment("Football match in the app");
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of player");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("KitNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Number back of the kit");
 
                     b.Property<int>("Position")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Played position");
 
                     b.Property<int?>("TeamId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier for team");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Identifier of app user");
 
                     b.HasKey("Id");
 
@@ -426,7 +451,9 @@ namespace MiniFootballApp.Infrastucture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
+
+                    b.HasComment("Football player");
 
                     b.HasData(
                         new
@@ -463,26 +490,32 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of the stadium");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Spactators capacity of stadium");
 
                     b.Property<int>("LocationId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier for location");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasComment("Name of the stadium");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Stadiums", (string)null);
+                    b.ToTable("Stadiums");
+
+                    b.HasComment("Football stadium");
 
                     b.HasData(
                         new
@@ -505,30 +538,37 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of team");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CaptainId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifier of team captain");
 
                     b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Approval of admin");
 
                     b.Property<string>("LogoUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Link/Path to the logo");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasComment("Name of the team");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CaptainId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
+
+                    b.HasComment("Football team");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
-using static MiniFootballApp.Infrastucture.Constants.RoleConstants;
+using static MiniFootballApp.Areas.Admin.Constants.AdminConstants;
 
 namespace Microsoft.AspNetCore.Builder
 {

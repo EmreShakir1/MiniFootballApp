@@ -28,9 +28,9 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false, comment: "First name of the application user"),
+                    LastName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false, comment: "Last name of the application user"),
+                    Age = table.Column<int>(type: "int", nullable: false, comment: "Age of the application user"),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -49,21 +49,23 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
+                },
+                comment: "The user of the application");
 
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier of location")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Address of the location"),
+                    Country = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false, comment: "Country of the location")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.Id);
-                });
+                },
+                comment: "Location of stadium in the app");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -175,11 +177,11 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 name: "Stadiums",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier of the stadium")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    LocationId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Name of the stadium"),
+                    Capacity = table.Column<int>(type: "int", nullable: false, comment: "Spactators capacity of stadium"),
+                    LocationId = table.Column<int>(type: "int", nullable: false, comment: "Identifier for location")
                 },
                 constraints: table =>
                 {
@@ -190,21 +192,22 @@ namespace MiniFootballApp.Infrastucture.Migrations
                         principalTable: "Locations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                },
+                comment: "Football stadium");
 
             migrationBuilder.CreateTable(
                 name: "Matches",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier of match")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RefereeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsPlayed = table.Column<bool>(type: "bit", nullable: false),
-                    Result = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HomeTeamId = table.Column<int>(type: "int", nullable: false),
-                    AwayTeamId = table.Column<int>(type: "int", nullable: false),
-                    StadiumId = table.Column<int>(type: "int", nullable: false)
+                    StartingTime = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Date of the match"),
+                    RefereeName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false, comment: "Name of referee"),
+                    IsPlayed = table.Column<bool>(type: "bit", nullable: false, comment: "Does the match is played"),
+                    Result = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true, comment: "Result of the match"),
+                    HomeTeamId = table.Column<int>(type: "int", nullable: false, comment: "Identifier of home team"),
+                    AwayTeamId = table.Column<int>(type: "int", nullable: false, comment: "Identifier of away team"),
+                    StadiumId = table.Column<int>(type: "int", nullable: false, comment: "Identifier of stadium")
                 },
                 constraints: table =>
                 {
@@ -215,18 +218,19 @@ namespace MiniFootballApp.Infrastucture.Migrations
                         principalTable: "Stadiums",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                },
+                comment: "Football match in the app");
 
             migrationBuilder.CreateTable(
                 name: "Players",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier of player")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KitNumber = table.Column<int>(type: "int", nullable: false),
-                    Position = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    KitNumber = table.Column<int>(type: "int", nullable: false, comment: "Number back of the kit"),
+                    Position = table.Column<int>(type: "int", nullable: false, comment: "Played position"),
+                    TeamId = table.Column<int>(type: "int", nullable: true, comment: "Identifier for team"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Identifier of app user")
                 },
                 constraints: table =>
                 {
@@ -237,29 +241,31 @@ namespace MiniFootballApp.Infrastucture.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                },
+                comment: "Football player");
 
             migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Identifier of team")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    CapitanId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Name of the team"),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Link/Path to the logo"),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false, comment: "Approval of admin"),
+                    CaptainId = table.Column<int>(type: "int", nullable: false, comment: "Identifier of team captain")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teams_Players_CapitanId",
-                        column: x => x.CapitanId,
+                        name: "FK_Teams_Players_CaptainId",
+                        column: x => x.CaptainId,
                         principalTable: "Players",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                },
+                comment: "Football team");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -331,9 +337,9 @@ namespace MiniFootballApp.Infrastucture.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_CapitanId",
+                name: "IX_Teams_CaptainId",
                 table: "Teams",
-                column: "CapitanId");
+                column: "CaptainId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Matches_Teams_AwayTeamId",

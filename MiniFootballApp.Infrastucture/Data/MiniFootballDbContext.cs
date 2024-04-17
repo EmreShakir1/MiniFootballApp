@@ -32,12 +32,6 @@ namespace MiniFootballApp.Infrastucture.Data
                 .HasForeignKey(m => m.AwayTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Player>()
-                .HasOne(p => p.Team)
-                .WithMany(t=>t.Players)
-                .HasForeignKey(p=> p.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.ApplyConfiguration(new LocationConfiguration());
             builder.ApplyConfiguration(new StadiumConfiguration());
             builder.ApplyConfiguration(new ApplicationUserConfiguration());

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
 using MiniFootballApp.Infrastucture.Data.Enumerations;
-using static MiniFootballApp.Infrastucture.Constants.RoleConstants;
 
 namespace MiniFootballApp.Infrastucture.Data.SeedDB
 {
@@ -201,8 +200,7 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
                 Name = "Manchester UTD",
                 LogoUrl = "https://marketplace.canva.com/EAFIdGdKVWc/1/0/1600w/canva-red-minimalist-skull-warrior-illustration-gaming-logo-w5IuEYm6TJM.jpg",
                 CaptainId = Player1.Id,
-                IsApproved = true,
-                
+                IsApproved = true,                
             };
 
             Team1 = new Team()
