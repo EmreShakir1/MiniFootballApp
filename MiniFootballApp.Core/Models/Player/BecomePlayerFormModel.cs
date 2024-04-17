@@ -1,19 +1,20 @@
-﻿using MiniFootballApp.Infrastucture.Data.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static MiniFootballApp.Core.Constants.MessageConstants;
+using static MiniFootballApp.Infrastucture.Constants.DataConstants;
 
 namespace MiniFootballApp.Core.Models.Player
 {
     public class BecomePlayerFormModel
     {
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
+        [Range(PlayerKitNumberMinValue,PlayerKitNumberMaxValue
+            ,ErrorMessage = RangeErrorMessage)]
         public int KitNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredErrorMessage)]
+        [StringLength(PlayerPositionMaxLength,
+            ErrorMessage = LengthErrorMessage,
+            MinimumLength = PlayerPositionMinLength)]
         public string Position { get; set; } = string.Empty;
 
         public int? TeamId { get; set; }

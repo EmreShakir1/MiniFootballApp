@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiniFootballApp.Infrastucture.Data;
 
@@ -9,7 +10,10 @@ builder.Services.AddApplicationDbContext(builder.Configuration);
 
 builder.Services.AddApplicationIdentity(builder.Configuration);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+});
 
 builder.Services.AddApplicationServices();
 

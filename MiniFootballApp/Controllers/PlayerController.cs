@@ -18,11 +18,6 @@ namespace MiniFootballApp.Controllers
             playerService = _playerService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public async Task<IActionResult> Become()
         {
@@ -34,6 +29,7 @@ namespace MiniFootballApp.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Become(BecomePlayerFormModel model)
         {
             string userId = User.Id();

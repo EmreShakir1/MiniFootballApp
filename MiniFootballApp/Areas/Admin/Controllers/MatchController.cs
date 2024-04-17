@@ -50,7 +50,7 @@ namespace MiniFootballApp.Areas.Admin.Controllers
             }
 
             await matchService.CreateMatchAsync(model);
-            return RedirectToAction("All", "Match");
+            return RedirectToAction("All", "Match", new { area = "" });
         }
     }
 }

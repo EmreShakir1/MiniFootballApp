@@ -9,9 +9,5 @@ namespace MiniFootballApp.Areas.Admin.Controllers
     [Authorize(Roles = AdminRole)]
     public class AdminController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

@@ -10,5 +10,7 @@ namespace MiniFootballApp.Core.Contracts
     public interface IMatchService
     {
         Task CreateMatchAsync(MatchFormModel model);
+
+        Task<MatchQueryServiceModel> AllMatchesAsync(AllMatchesQueryModel model);
     }
 }

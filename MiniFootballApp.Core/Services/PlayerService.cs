@@ -5,11 +5,6 @@ using MiniFootballApp.Core.Models.Team;
 using MiniFootballApp.Infrastucture.Data.Common;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
 using MiniFootballApp.Infrastucture.Data.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniFootballApp.Core.Services
 {
@@ -27,7 +22,7 @@ namespace MiniFootballApp.Core.Services
             var player = new Player()
             {
                 KitNumber = model.KitNumber,
-                Position = (Position)Enum.Parse(typeof(Position), model.Position),
+                Position = (Position)Enum.Parse(typeof(Position),model.Position),
                 UserId = userId,
                 TeamId = model.TeamId,
             };

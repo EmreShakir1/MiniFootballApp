@@ -1,0 +1,34 @@
+﻿@using MiniFootballApp.Core.Models.Match;
+
+@model MatchServiceModel
+
+
+@if (Model.IsPlayed == true)
+{
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card text-bg-primary mb-3 text-center">
+                <h4>@Model.StartingTime</h4>
+                <h6>@Model.RefereeName</h6>
+                <p>@Model.HomeTeamName</p>
+                <p>@Model.AwayTeamName</p>
+                <p><strong>@Model.Result</strong></p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body text-center">
+                <h4>@Model.StartingTime</h4>
+                <h6>@Model.RefereeName</h6>
+                <p>@Model.HomeTeamName</p>
+                <p>@Model.AwayTeamName</p>
+                <p><strong>Not played yet!</strong></p>
+            </div>
+        </div>
+    </div>
+}
+

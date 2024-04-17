@@ -1,4 +1,5 @@
-﻿using MiniFootballApp.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using MiniFootballApp.Core.Contracts;
 using MiniFootballApp.Core.Models.Match;
 using MiniFootballApp.Infrastucture.Data.Common;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
@@ -19,6 +20,51 @@ namespace MiniFootballApp.Core.Services
             repository = _repository;
         }
 
+        public async Task<MatchQueryServiceModel> AllMatchesAsync(AllMatchesQueryModel model)
+        {
+            var matchesFromDb = await  repository.AllReadOnly<Match>().ToListAsync();
+
+            if (model.SearchTerm != null)
+            {
+                string normalizedSearch = model.SearchTerm.ToLower();
+                matchesFromDb = matchesFromDb
+                    .Where(m => 
+                    (GetTeamNameById(m.HomeTeamId).ToLower().Contains(normalizedSearch)) ||
+                    (GetTeamNameById(m.AwayTeamId).ToLower().Contains(normalizedSearch)) ||
+                    m.RefereeName.ToLower().Contains(normalizedSearch)).ToList();
+            }
+
+            if (model.MatchSorting == Enums.MatchSorting.Oldest)
+            {
+                matchesFromDb.OrderByDescending(m => m.StartingTime);
+            }
+            else
+            {
+                matchesFromDb.OrderBy(m => m.StartingTime);
+            }
+
+            var matchesToShow = matchesFromDb.Skip((model.CurrentPage - 1) * AllMatchesQueryModel.MatchPerPage)
+                .Take(AllMatchesQueryModel.MatchPerPage)
+                .Select( m => new MatchServiceModel
+                {
+                    Id = m.Id,
+                    HomeTeamName = GetTeamNameById(m.HomeTeamId),
+                    AwayTeamName = GetTeamNameById(m.AwayTeamId),
+                    RefereeName = m.RefereeName,
+                    Result = m.Result ?? string.Empty,
+                    StadiumName = GetStadiumNameById(m.StadiumId),
+                    StartingTime = m.StartingTime.ToString("HH/mm dd/MM/yyyy")
+                }).ToList();
+
+            int totalMatches = matchesFromDb.Count();
+
+            return new MatchQueryServiceModel()
+            {
+                matches = matchesToShow,
+                TotalMatchesCount = totalMatches
+            };
+        }
+
         public async Task CreateMatchAsync(MatchFormModel model)
         {
             var match = new Match()
@@ -32,6 +78,20 @@ namespace MiniFootballApp.Core.Services
 
             await repository.AddAsync(match);
             await repository.SaveChangesAsync();
+        }
+
+        private string GetTeamNameById(int teamId)
+        {
+            var team = repository.AllReadOnly<Team>().FirstOrDefault(x => x.Id == teamId);
+
+            return team?.Name ?? string.Empty;
+        }
+
+        private string GetStadiumNameById(int stadiumId)
+        {
+            var stadium = repository.AllReadOnly<Stadium>().FirstOrDefault(x => x.Id == stadiumId);
+
+            return stadium?.Name ?? string.Empty;
         }
     }
 }
