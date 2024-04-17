@@ -13,9 +13,20 @@ namespace MiniFootballApp.Infrastucture.Data
 {
     public class MiniFootballDbContext : IdentityDbContext<ApplicationUser>
     {
-        public MiniFootballDbContext(DbContextOptions<MiniFootballDbContext> options) : base(options)
-        {
+        private bool seedDb;
 
+        public MiniFootballDbContext(DbContextOptions<MiniFootballDbContext> options, bool _seedDb = true) : base(options)
+        {
+            if (Database.IsRelational())
+            {
+                Database.Migrate();
+            }
+            else
+            {
+                Database.EnsureCreated();
+            }
+
+            seedDb = _seedDb;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,12 +43,21 @@ namespace MiniFootballApp.Infrastucture.Data
                 .HasForeignKey(m => m.AwayTeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.ApplyConfiguration(new LocationConfiguration());
-            builder.ApplyConfiguration(new StadiumConfiguration());
-            builder.ApplyConfiguration(new ApplicationUserConfiguration());
-            builder.ApplyConfiguration(new PlayerConfiguration());
-            //builder.ApplyConfiguration(new TeamConfiguration());
-            //builder.ApplyConfiguration(new MatchConfiguration());
+            builder.Entity<Player>()
+                .HasOne(p => p.Team)
+                .WithMany(t => t.Players)
+                .HasForeignKey(p => p.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            if (seedDb)
+            {
+                builder.ApplyConfiguration(new LocationConfiguration());
+                builder.ApplyConfiguration(new StadiumConfiguration());
+                builder.ApplyConfiguration(new ApplicationUserConfiguration());
+                builder.ApplyConfiguration(new PlayerConfiguration());
+                //builder.ApplyConfiguration(new TeamConfiguration());
+                //builder.ApplyConfiguration(new MatchConfiguration());
+            }
 
             base.OnModelCreating(builder);
         }

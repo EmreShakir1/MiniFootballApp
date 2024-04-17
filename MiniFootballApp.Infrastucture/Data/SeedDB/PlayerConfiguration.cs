@@ -17,12 +17,6 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
             var data = new SeedData();
 
             builder.HasData(new Player[] {data.Player1, data.Player2,data.Player3,data.Player4});
-
-            builder
-                .HasOne(p => p.Team)
-                .WithMany(t => t.Players)
-                .HasForeignKey(p => p.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,65 +1,88 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MiniFootballApp.Core.Contracts;
+using MiniFootballApp.Core.Models.Team;
 using MiniFootballApp.Core.Services;
 using MiniFootballApp.Infrastucture.Data;
 using MiniFootballApp.Infrastucture.Data.Common;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniFootball.UnitTests
 {
     [TestFixture]
     public class TeamServiceTests
     {
-        private IRepository repo;
-        private ITeamService teamService;
-        private MiniFootballDbContext dbContext;
+        private Mock<IRepository> mockRepository;
+        private TeamService teamService;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
-            var contextOptions = new DbContextOptionsBuilder<MiniFootballDbContext>()
-                .UseInMemoryDatabase("MiniFootballDb")
-                .Options;
-
-            dbContext = new MiniFootballDbContext(contextOptions);
-            dbContext.Database.EnsureDeleted();
-            dbContext.Database.EnsureCreated();
+            mockRepository = new Mock<IRepository>();
+            teamService = new TeamService(mockRepository.Object);
         }
 
         [Test]
-        public async Task TestFindByIdTeamAsync()
+        public async Task AllTeamsAsync_ReturnsOnlyApprovedTeams()
         {
-            var repo = new Repository(dbContext);
-            teamService = new TeamService(repo);
-
-            await repo.AddAsync(new Team()
+            // Arrange
+            var data = new List<Team>
             {
-                Id = 1,
-                Name = "Test",
-                LogoUrl = "",
-                IsApproved = false,
+            new Team { Id = 1, Name = "Team A", IsApproved = true },
+            new Team { Id = 2, Name = "Team B", IsApproved = false }
             }
-            );
+                .AsQueryable();
 
-            await repo.SaveChangesAsync();
+            mockRepository.Setup(r => r.AllReadOnly<Team>()).Returns(data);
 
-            var team = await teamService.FindTeamByIdAsync(1);
+            // Act
+            var result = await teamService.AllTeamsAsync();
 
-            Assert.That(1 ,Is.EqualTo(team.Id));
-            Assert.That("Test", Is.EqualTo(team.Name));
-            Assert.That("", Is.EqualTo(team.LogoUrl));
+            // Assert
+            mockRepository.Verify(r => r.AllReadOnly<Team>(), Times.Once);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual("Team A", result.First().Name);
         }
 
-
-        [TearDown]
-        public void TearDown()
+        [Test]
+        public async Task CreateTeamAsync_CreatesAndSavesTeam()
         {
-            dbContext.Dispose();
+            // Arrange
+            var players = new List<Player>
+            {
+                new Player { Id = 1, UserId = "user123" }
+            }.AsQueryable();
+
+            var model = new TeamFormModel { Name = "New Team", LogoUrl = "url" };
+
+            mockRepository.Setup(r => r.AllReadOnly<Player>()).Returns(players);
+
+            // Act
+            await teamService.CreateTeamAsync(model, "user123");
+
+            // Assert
+            mockRepository.Verify(r => r.AddAsync(It.IsAny<Team>()), Times.Once);
+            mockRepository.Verify(r => r.SaveChangesAsync(), Times.Once);
         }
+
+        [Test]
+        public async Task FindTeamByIdAsync_ReturnsCorrectTeam()
+        {
+            // Arrange
+            var data = new List<Team>
+            {
+                new Team { Id = 1, Name = "Team A", Captain = new Player { ApplicaitonUser = new ApplicationUser { FirstName = "John", LastName = "Doe" } } }
+            }.AsQueryable();
+
+            mockRepository.Setup(r => r.AllReadOnly<Team>()).Returns(data);
+
+            // Act
+            var result = await teamService.FindTeamByIdAsync(1);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Team A", result.Name);
+            Assert.AreEqual("John Doe", result.CapitanName);
+        }
+
     }
 }
