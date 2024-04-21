@@ -7,6 +7,7 @@ using MiniFootballApp.Infrastucture.Data.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Cache;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,11 +55,9 @@ namespace MiniFootballApp.Core.Services
             {
                 Name = model.Name,
                 LogoUrl = model.LogoUrl,
-                IsApproved = false,
+                IsApproved = true,
                 CaptainId = capitan.Id,
             };
-
-            team.Players.Add(capitan);
 
             await repository.AddAsync(team);
             await repository.SaveChangesAsync();

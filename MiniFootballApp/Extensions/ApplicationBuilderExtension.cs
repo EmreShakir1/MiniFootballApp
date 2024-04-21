@@ -12,6 +12,7 @@ namespace Microsoft.AspNetCore.Builder
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+
             if (userManager != null && roleManager != null && await roleManager.RoleExistsAsync(AdminRole) == false)
             {
                 var role = new IdentityRole(AdminRole);

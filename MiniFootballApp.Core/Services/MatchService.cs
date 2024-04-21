@@ -53,7 +53,7 @@ namespace MiniFootballApp.Core.Services
                     RefereeName = m.RefereeName,
                     Result = m.Result ?? string.Empty,
                     StadiumName = GetStadiumNameById(m.StadiumId),
-                    StartingTime = m.StartingTime.ToString("HH/mm dd/MM/yyyy")
+                    StartingTime = m.StartingTime.ToString("HH:mm dd/MM/yyyy")
                 }).ToList();
 
             int totalMatches = matchesFromDb.Count();
