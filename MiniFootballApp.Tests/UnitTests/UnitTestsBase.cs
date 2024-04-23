@@ -1,4 +1,5 @@
 ﻿using MiniFootballApp.Infrastucture.Data;
+using MiniFootballApp.Infrastucture.Data.Common;
 using MiniFootballApp.Infrastucture.Data.EntityModels;
 using MiniFootballApp.Infrastucture.Migrations;
 using MiniFootballApp.Tests.Mocks;
@@ -13,11 +14,13 @@ namespace MiniFootballApp.Tests.UnitTests
     public class UnitTestsBase
     {
         protected MiniFootballDbContext context;
+        protected IRepository repository;
 
         [OneTimeSetUp]
         public void SetUpBase()
         {
             context = DatabaseMock.Instsance;
+            repository = new Repository(context);
             SeedDatabase();
         }
 
@@ -40,26 +43,28 @@ namespace MiniFootballApp.Tests.UnitTests
                 FirstName = "Test",
                 LastName = "Test"
             };
+            context.Users.Add(User);
 
             Player = new Player()
             {
                 Id = 1,
-                ApplicaitonUser = User,
                 KitNumber = 1,
                 Position = Infrastucture.Data.Enumerations.Position.Forward,
-                UserId = User.Id,
+                UserId = "UserId",
+                ApplicaitonUser = User,
                 Team = Team
             };
+            context.Players.Add(Player);
 
             Team = new Team()
             {
                 Id = 1,
                 Name = "TestTeam",
                 LogoUrl = "",
-                Captain = Player,
-                CaptainId = Player.Id,
+                CaptainId = 1,
                 IsApproved = true,
             };
+            context.Teams.Add(Team);
 
             Location = new Location() 
             {
@@ -67,15 +72,17 @@ namespace MiniFootballApp.Tests.UnitTests
                 Address = "bul Bulgaria 10",
                 Country = "Bulgaria",
             };
+            context.Locations.Add(Location);
 
             Stadium = new Stadium()
             {
                 Id = 1,
-                Capacity = 100,
-                Location = Location,
-                LocationId = Location.Id,
                 Name = "TestStadium",
+                Capacity = 100,
+                LocationId = 1,
+                Location = Location,
             };
+            context.Stadiums.Add(Stadium);
         }
 
         [OneTimeTearDown]

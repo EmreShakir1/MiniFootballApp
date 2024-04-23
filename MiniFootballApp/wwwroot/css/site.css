@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+header{
+    background-color: #000639;
+    color : aliceblue;
+}
+
+body {
+    background-color: #808080; 
+    color : aliceblue;
+}
+
+footer {
+    background-color: #000639;
+    color: aliceblue;
+}
+
+a{
+    color:azure;
+    padding: 5px;
+}

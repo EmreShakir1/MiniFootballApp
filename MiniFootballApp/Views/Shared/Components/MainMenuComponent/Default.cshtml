@@ -2,27 +2,27 @@
 
 <ul class="navbar-nav flex-grow-1">
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
     </li>
     @if (this.User?.Identity?.IsAuthenticated ?? false)
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="All">All Teams</a>
+            <a class="nav-link" asp-area="" asp-controller="Team" asp-action="All">All Teams</a>
         </li>
         if (await playerService.PlayerIsInTeamAsync(User.Id()))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Mine">My Team</a>
+                <a class="nav-link" asp-area="" asp-controller="Team" asp-action="Mine">My Team</a>
             </li>
         }
         @if (await playerService.IsPlayerAsync(User.Id()) && await playerService.PlayerIsInTeamAsync(User.Id()) == false)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Add">Create Team</a>
+                <a class="nav-link" asp-area="" asp-controller="Team" asp-action="Add">Create Team</a>
             </li>
         }
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Match" asp-action="All">See all matches</a>
+            <a class="nav-link" asp-area="" asp-controller="Match" asp-action="All">See all matches</a>
         </li>
     }
 </ul>

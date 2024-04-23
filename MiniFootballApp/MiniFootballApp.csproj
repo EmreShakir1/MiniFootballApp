@@ -28,6 +28,8 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Attributes\" />
+    <Folder Include="wwwroot\Images\Error\" />
+    <Folder Include="wwwroot\Images\Home\" />
   </ItemGroup>
 
 </Project>

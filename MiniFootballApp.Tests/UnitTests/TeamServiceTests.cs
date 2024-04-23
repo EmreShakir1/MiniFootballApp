@@ -11,33 +11,24 @@ using System.Threading.Tasks;
 
 namespace MiniFootballApp.Tests.UnitTests
 {
+    [TestFixture]
     public class TeamServiceTests : UnitTestsBase
     {
         private ITeamService teamService;
-        private IRepository repository;
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            var repo = new Repository(context);
-            teamService = new TeamService(repo);
+            teamService = new TeamService(repository);
         }
 
         [Test]
-        public async Task AllTeamsAsync_ReturnsOnlyApprovedTeams()
+        public async Task TeamExistsAsync_ShouldReturnCorrectTeam()
         {
-            var teams = new List<Team>
-            {
-                new Team { Id = 1, Name = "Team A", IsApproved = true },
-                new Team { Id = 2, Name = "Team B", IsApproved = false }
-            }.AsQueryable();
+            var result = await teamService.TeamExistsAsync(Team.Id);
 
-            // Act
-            var result = await teamService.AllTeamsAsync();
+            Assert.That(result, Is.EqualTo(true));
 
-            // Assert
-            Assert.That(result.Count(), Is.EqualTo(1));
-            Assert.That(result.First().Name, Is.EqualTo("Team A"));
         }
     }
 }

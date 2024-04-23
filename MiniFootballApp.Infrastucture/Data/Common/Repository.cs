@@ -40,5 +40,20 @@ namespace MiniFootballApp.Infrastucture.Data.Common
         {
             return await dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync<T>(object id) where T : class
+        {
+            var entity = await GetByIdAsync<T>(id);
+
+            if (entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
+        }
+
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
+        {
+            return await DbSet<T>().FindAsync(id);
+        }
     }
 }

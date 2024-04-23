@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.AspNetCore.Mvc;
 using MiniFootballApp.Core.Contracts;
 using MiniFootballApp.Core.Models.Team;
-using MiniFootballApp.Core.Services;
 using System.Security.Claims;
 
 namespace MiniFootballApp.Controllers
