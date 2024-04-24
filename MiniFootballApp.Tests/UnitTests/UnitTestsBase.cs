@@ -34,6 +34,8 @@ namespace MiniFootballApp.Tests.UnitTests
 
         public Location Location { get; set; }
 
+        public Match Match { get; set; }
+
         private void SeedDatabase()
         {
             User = new ApplicationUser()
@@ -44,6 +46,16 @@ namespace MiniFootballApp.Tests.UnitTests
                 LastName = "Test"
             };
             context.Users.Add(User);
+
+            Team = new Team()
+            {
+                Id = 1,
+                Name = "TestTeam",
+                LogoUrl = "",
+                CaptainId = 1,
+                IsApproved = true,
+            };
+            context.Teams.Add(Team);
 
             Player = new Player()
             {
@@ -56,15 +68,7 @@ namespace MiniFootballApp.Tests.UnitTests
             };
             context.Players.Add(Player);
 
-            Team = new Team()
-            {
-                Id = 1,
-                Name = "TestTeam",
-                LogoUrl = "",
-                CaptainId = 1,
-                IsApproved = true,
-            };
-            context.Teams.Add(Team);
+            
 
             Location = new Location() 
             {
@@ -83,6 +87,24 @@ namespace MiniFootballApp.Tests.UnitTests
                 Location = Location,
             };
             context.Stadiums.Add(Stadium);
+
+            Match = new Match()
+            {
+                AwayTeam = Team,
+                AwayTeamId = 1,
+                HomeTeam = Team,
+                HomeTeamId = 1,
+                Id = 1,
+                IsPlayed = true,
+                RefereeName = "TestReferee",
+                Result = "1:0",
+                StadiumId = 1,
+                Stadium = Stadium,
+                StartingTime = DateTime.Now,
+            };
+            context.Matches.Add(Match);
+
+            context.SaveChanges();
         }
 
         [OneTimeTearDown]

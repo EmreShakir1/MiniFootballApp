@@ -30,7 +30,7 @@ namespace MiniFootballApp.Core.Services
                 {
                     Id = t.Id,
                     Name = t.Name,
-                })
+                })  
                 .ToListAsync();
         }
 
