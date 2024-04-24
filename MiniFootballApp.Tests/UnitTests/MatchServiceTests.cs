@@ -81,5 +81,63 @@ namespace MiniFootballApp.Tests.UnitTests
             Assert.That(count, Is.EqualTo(result.TotalMatchesCount));
             Assert.That(Team.Name, Is.EqualTo(homeTeamName));
         }
+
+        [Test]
+        public async Task EditAsync_ShouldEditCorrectlyFalse()
+        {
+            var model = new MatchFormModel()
+            {
+                RefereeName = "Test",
+                IsPlayed = "false",
+                Result = "1:0",
+            };
+
+            await matchService.EditAsync(Match.Id, model);  
+
+            Assert.That(model.IsPlayed, Is.EqualTo(model.IsPlayed));
+            Assert.That(model.Result, Is.EqualTo(model.Result));
+            Assert.True(!Match.IsPlayed);
+        }
+
+        [Test]
+        public async Task EditAsync_ShouldEditCorrectlyTrue()
+        {
+            var model = new MatchFormModel()
+            {
+                RefereeName = "Test",
+                IsPlayed = "true",
+                Result = "1:0",
+            };
+
+            await matchService.EditAsync(Match.Id, model);
+
+            Assert.That(model.IsPlayed, Is.EqualTo(model.IsPlayed));
+            Assert.That(model.Result, Is.EqualTo(model.Result));
+            Assert.True(Match.IsPlayed);
+        }
+
+        [Test]
+        public async Task FindMatchById_ShouldReturnCorectly()
+        {
+            var result = await matchService.FindMatchById(Match.Id);
+
+            Assert.That(Match.Result,Is.EqualTo(result.Result));
+        }
+
+        [Test]
+        public async Task FindMatchById_ShouldReturnCorectlyNull()
+        {
+            var result = await matchService.FindMatchById(0);
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        public async Task MatchExists_ReturnsCorrectly()
+        {
+            var result = await matchService.MatchExistsAsync(Match.Id);
+
+            Assert.True(result);
+        }
     }
 }

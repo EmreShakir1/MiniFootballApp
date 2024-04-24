@@ -37,7 +37,7 @@ namespace MiniFootballApp.Core.Services
 
             if (player.TeamId == null)
             {
-                throw new ArgumentNullException();
+                return 0;
             }
 
             return (int)player.TeamId;
@@ -81,7 +81,7 @@ namespace MiniFootballApp.Core.Services
             return await repository.AllReadOnly<Team>().AnyAsync(t => t.CaptainId == captain.Id);
         }
 
-        public async Task<bool> PlayerIsInTeamAsync(string userId)
+        public async Task<bool>    PlayerIsInTeamAsync(string userId)
         {
             var player = await repository.AllReadOnly<Player>().Where(p=>p.UserId == userId).FirstOrDefaultAsync();
 

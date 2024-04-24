@@ -173,7 +173,8 @@ namespace MiniFootballApp.Core.Services
         {
             var team = await repository.AllReadOnly<Team>().Where(t => t.Id == teamId).FirstOrDefaultAsync();
 
-            var captain = await repository.AllReadOnly<Player>().Where(p => p.UserId == UserId).FirstOrDefaultAsync();
+            var captain = await repository.AllReadOnly<Player>()
+                .Where(p => p.UserId == UserId).FirstOrDefaultAsync();
 
             if (team == null || captain == null)
             {

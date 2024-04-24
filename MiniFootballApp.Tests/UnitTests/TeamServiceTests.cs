@@ -35,6 +35,8 @@ namespace MiniFootballApp.Tests.UnitTests
         [Test]
         public async Task AllTeamsAsync_ShouldReturnCorrectCount()
         {
+            await teamService.ApproveATeam(Team.Id);
+
             var result = await teamService.AllTeamsAsync();
 
             Assert.That(result.Count(), Is.EqualTo(1));
@@ -45,7 +47,7 @@ namespace MiniFootballApp.Tests.UnitTests
         {
             var count = context.Teams.Count();
 
-            var teamToAdd = new TeamFormModel() 
+            var teamToAdd = new TeamFormModel()
             {
                 Name = "Test",
                 LogoUrl = "aaaaaa",
@@ -63,6 +65,9 @@ namespace MiniFootballApp.Tests.UnitTests
         [Test]
         public async Task AllTeamsServiceModelAsync_ShouldReturnCorrect()
         {
+            await teamService.ApproveATeam(Team.Id);
+
+
             var result = await teamService.AllTeamsServiceModelAsync();
 
             Assert.That(result.Count(), Is.EqualTo(1));
@@ -82,6 +87,104 @@ namespace MiniFootballApp.Tests.UnitTests
             var result = await teamService.TeamExistsAsync(1);
 
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task TeamHasForCaptain_ShouldReturnCorrectValue()
+        {
+            var teamId = Team.Id;
+            var playerId = Player.UserId;
+
+            var result = await teamService.TeamHasForCaptain(teamId, playerId);
+
+            Assert.True(result);
+        }
+
+        [Test]
+        public async Task GetTeamDetailsServiceModel_ReturnsCorrectlyTeam()
+        {
+            var team = await teamService.GetTeamDetailsServiceModelAsync(Team.Id);
+
+            Assert.That(Team.Id, Is.EqualTo(team.Id));
+        }
+
+        [Test]
+        public async Task GetTeamDetailsServiceModel_ReturnsCorrectlyTeamNull()
+        {
+            var team = await teamService.GetTeamDetailsServiceModelAsync(0);
+
+            Assert.IsNull(team);
+        }
+
+        [Test]
+        public async Task EditAsync_ShouldEditCorrectly()
+        {
+            var model = new TeamFormModel() { 
+                LogoUrl = "Edited",
+                Name = "Edited",
+            };
+
+            await teamService.EditAsync(Team.Id, model);
+
+            Assert.That(model.Name, Is.EqualTo(Team.Name));
+            Assert.That(model.LogoUrl, Is.EqualTo(Team.LogoUrl));
+        }
+
+        [Test]
+        public async Task ApproveATeam_ShouldApproveATeam()
+        {
+            await teamService.ApproveATeam(Team.Id);
+
+            Assert.True(Team.IsApproved);
+        }
+
+        [Test]
+        public async Task GetTeamFormModelAsync_ShouldReturnCorrectTeam()
+        {
+            var model = await teamService.GetTeamFormModelAsync(Team.Id);
+
+            Assert.That(Team.Name, Is.EqualTo(model.Name));
+            Assert.That(Team.LogoUrl, Is.EqualTo(model.LogoUrl));
+        }
+
+        [Test]
+        public async Task GetTeamFormModelAsync_ShouldReturnCorrectTeamNull()
+        {
+            var model = await teamService.GetTeamFormModelAsync(0);
+
+            Assert.IsNull(model);
+        }
+
+        [Test]
+        public async Task TeamHasForCaptain_ShouldReturnCorrectValueFalse1()
+        {
+            var teamId = Team.Id;
+            var playerId = "";
+
+            var result = await teamService.TeamHasForCaptain(teamId, playerId);
+
+            Assert.True(!result);
+        }
+        [Test]
+        public async Task TeamHasForCaptain_ShouldReturnCorrectValueFalse2()
+        {
+            var teamId = 0;
+            var playerId = User.Id;
+
+            var result = await teamService.TeamHasForCaptain(teamId, playerId);
+
+            Assert.True(!result);
+        }
+
+        [Test]
+        public async Task TeamHasForCaptain_ShouldReturnCorrectValueFalse3()
+        {
+            var teamId = Team.Id;
+            var playerId = User2.Id;
+
+            var result = await teamService.TeamHasForCaptain(teamId, playerId);
+
+            Assert.True(!result);
         }
     }
 }

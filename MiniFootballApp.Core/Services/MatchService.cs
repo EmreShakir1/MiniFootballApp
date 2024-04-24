@@ -101,7 +101,7 @@ namespace MiniFootballApp.Core.Services
             return await repository.AllReadOnly<Match>().AnyAsync(m => m.Id == id);    
         }
 
-        public async Task<MatchFormModel> FindMatchById(int id)
+        public async Task<MatchFormModel>   FindMatchById(int id)
         {
             var match = await repository.GetByIdAsync<Match>(id);
 

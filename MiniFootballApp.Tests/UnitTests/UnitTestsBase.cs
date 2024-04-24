@@ -28,6 +28,10 @@ namespace MiniFootballApp.Tests.UnitTests
 
         public Player Player { get; set; }
 
+        public ApplicationUser User2 { get; set; }
+
+        public Player Player2 { get; set; }
+
         public Team Team { get; set; }
 
         public Stadium Stadium { get; set; }
@@ -47,13 +51,22 @@ namespace MiniFootballApp.Tests.UnitTests
             };
             context.Users.Add(User);
 
+            User2 = new ApplicationUser()
+            {
+                Id = "UserId2",
+                Email = "user2@mail.com",
+                FirstName = "Test2",
+                LastName = "Test2"
+            };
+            context.Users.Add(User2);
+
             Team = new Team()
             {
                 Id = 1,
                 Name = "TestTeam",
                 LogoUrl = "",
                 CaptainId = 1,
-                IsApproved = true,
+                IsApproved = false,
             };
             context.Teams.Add(Team);
 
@@ -62,13 +75,23 @@ namespace MiniFootballApp.Tests.UnitTests
                 Id = 1,
                 KitNumber = 1,
                 Position = Infrastucture.Data.Enumerations.Position.Forward,
-                UserId = "UserId",
+                UserId = User.Id,
                 ApplicaitonUser = User,
                 Team = Team
             };
             context.Players.Add(Player);
 
-            
+            Player2 = new Player()
+            {
+                Id = 2,
+                KitNumber = 99,
+                Position = Infrastucture.Data.Enumerations.Position.Midfielder,
+                UserId = User2.Id,
+                ApplicaitonUser = User2,
+                Team = Team
+            };
+            context.Players.Add(Player2);
+
 
             Location = new Location() 
             {

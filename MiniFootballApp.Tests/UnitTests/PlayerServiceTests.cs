@@ -51,13 +51,47 @@ namespace MiniFootballApp.Tests.UnitTests
         [Test]
         public async Task GetAllPlayersOfATeamAsync_ShouldReturnCorrectly()
         {
-            var count = context.Players.Where(x=>x.TeamId == Team.Id).Count();
+            var count = context.Players.Where(x => x.TeamId == Team.Id).Count();
 
             var result = await playerService.GetAllPlayersOfTeamAsync(Team.Id);
 
             var countResult = result.Count();
 
             Assert.That(count, Is.EqualTo(countResult));
+        }
+
+        [Test]
+        public async Task PlayerIsInTeamAsync_ShouldReturnCorrectValues()
+        {
+            var result = await playerService.PlayerIsInTeamAsync(User.Id);
+
+            Assert.True(result);
+        }
+
+        //[Test]
+        //public async Task JoinATeamAsync_ShouldAddPlayer()
+        //{
+        //    var count = Team.Players.Count();
+
+        //    await playerService.JoinATeamAsync(User2.Id, Team.Id);
+
+        //    Assert.That(count + 1, Is.EqualTo(Team.Players.Count()));
+        //}
+
+        [Test]
+        public async Task PlayerIsCaptainAsync()
+        {
+            var result = await playerService.PlayerIsCaptainAsync(User.Id);
+
+            Assert.True(result);
+        }
+
+        [Test]
+        public async Task IsPlayerAsync()
+        {
+            var result = await playerService.IsPlayerAsync(User.Id);
+
+            Assert.True(result);
         }
     }
 }

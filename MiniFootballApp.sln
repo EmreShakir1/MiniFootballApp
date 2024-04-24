@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniFootballApp.Infrastuctu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniFootballApp.Core", "MiniFootballApp.Core\MiniFootballApp.Core.csproj", "{99F446BB-4AA1-4CBC-A3EE-BDBCBA2043DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniFootballApp.Tests", "MiniFootballApp.Tests\MiniFootballApp.Tests.csproj", "{D71E6363-0B58-4976-A0FB-2B9466A7FAB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniFootballApp.Tests", "MiniFootballApp.Tests\MiniFootballApp.Tests.csproj", "{D7E01470-DDF1-4867-8B5F-F3A195A98017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{99F446BB-4AA1-4CBC-A3EE-BDBCBA2043DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F446BB-4AA1-4CBC-A3EE-BDBCBA2043DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F446BB-4AA1-4CBC-A3EE-BDBCBA2043DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D71E6363-0B58-4976-A0FB-2B9466A7FAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D71E6363-0B58-4976-A0FB-2B9466A7FAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D71E6363-0B58-4976-A0FB-2B9466A7FAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D71E6363-0B58-4976-A0FB-2B9466A7FAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E01470-DDF1-4867-8B5F-F3A195A98017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E01470-DDF1-4867-8B5F-F3A195A98017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E01470-DDF1-4867-8B5F-F3A195A98017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E01470-DDF1-4867-8B5F-F3A195A98017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
