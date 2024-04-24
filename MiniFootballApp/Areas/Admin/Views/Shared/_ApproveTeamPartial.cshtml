@@ -1,0 +1,18 @@
+﻿@using MiniFootballApp.Core.Models.Team;
+
+
+@model TeamServiceModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.LogoUrl" alt="House Image">
+        <div class="card-body text-center">
+            <h4>@Model.Name</h4>
+            <br />
+            <form class="input-group-sm" asp-area="Admin" asp-controller="Team"
+                  asp-action="Approve" asp-route-Id="@Model.Id" method="post">
+                <input class="btn btn-success" type="submit" value="Approve" />
+            </form>
+        </div>
+    </div>
+</div>

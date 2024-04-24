@@ -1,0 +1,18 @@
+﻿@using MiniFootballApp.Core.Models.Team;
+
+@model IEnumerable<TeamServiceModel>
+
+
+@{
+    ViewBag.Title = "All Teams";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    @foreach (var team in Model)
+    {
+        <partial name="_TeamPartial" model="@team" />
+    }
+</div>

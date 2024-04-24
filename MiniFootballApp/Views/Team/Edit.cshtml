@@ -1,0 +1,16 @@
+﻿@using MiniFootballApp.Core.Models.Team;
+
+@model TeamFormModel
+
+@{
+    ViewBag.Title = "Edit Team";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr/>
+
+<partial name="_TeamFormPartial"/>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+}
