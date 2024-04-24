@@ -20,5 +20,20 @@ namespace MiniFootballApp.Core.Contracts
         Task<IEnumerable<TeamServiceModel>> AllTeamsServiceModelAsync();
 
         Task<TeamDetailsServiceModel> FindTeamByIdAsync(int id);
+
+        Task<bool> TeamHasForCaptain(int teamId, string UserId);
+
+        Task<TeamFormModel> GetTeamFormModelAsync(int teamId);
+
+        Task EditAsync(int teamId, TeamFormModel model);
+
+        Task<TeamDetailsServiceModel> GetTeamDetailsServiceModelAsync(int teamId);
+
+        Task DeleteAsync(int teamId);
+
+        Task<IEnumerable<TeamServiceModel>> GetAllUnApprovedTeams();
+
+        Task ApproveATeam(int teamId);
+
     }
 }

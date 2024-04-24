@@ -24,5 +24,6 @@ namespace MiniFootballApp.Core.Contracts
         Task JoinATeamAsync(string userId, int teamId);
 
         Task<int> FindTeamIdPlayingForAsync(string userId);
+
     }
 }

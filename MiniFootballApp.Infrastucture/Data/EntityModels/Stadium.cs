@@ -21,6 +21,9 @@ namespace MiniFootballApp.Infrastucture.Data.EntityModels
         [Comment("Spactators capacity of stadium")]
         public int Capacity { get; set; }
 
+        [Comment("Photo of the stadium")]
+        public string ImageUrl { get; set; } = string.Empty;
+
         [Required]
         [Comment("Identifier for location")]
         public int LocationId { get; set; }

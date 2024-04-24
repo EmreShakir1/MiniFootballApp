@@ -78,8 +78,8 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
                 Id = 1,
                 Capacity = 100,
                 Name = "Marakana",
-                LocationId = 1,
-
+                LocationId = Location1.Id,
+                ImageUrl = "~/Images/Stadiums/Marakana.jpg",
             };
 
             Stadium2 = new Stadium()
@@ -87,8 +87,8 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
                 Id = 2,
                 Capacity = 200,
                 Name = "Shipka",
-                LocationId = 2,
-
+                LocationId = Location2.Id,
+                ImageUrl = "~/Images/Stadiums/Shipka.webp",
             };
         }
 
@@ -206,7 +206,7 @@ namespace MiniFootballApp.Infrastucture.Data.SeedDB
             Team1 = new Team()
             {
                 Id = 2,
-                Name = "Chelsi",
+                Name = "Chelsea",
                 LogoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1fL_BDbcPCdYuxn8tyAYHjW0-UGGBbbxWdbF4b5Y12Q&s",
                 CaptainId = Player2.Id,
                 IsApproved = true,

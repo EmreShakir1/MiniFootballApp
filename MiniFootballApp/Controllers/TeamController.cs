@@ -89,6 +89,80 @@ namespace MiniFootballApp.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await teamService.TeamExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
 
+            if (await teamService.TeamHasForCaptain(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var model = await teamService.GetTeamFormModelAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TeamFormModel model)
+        {
+            if (await teamService.TeamExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await teamService.TeamHasForCaptain(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            await teamService.EditAsync(id, model);
+            return RedirectToAction(nameof(Details), new {id});
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await teamService.TeamExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await teamService.TeamHasForCaptain(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var team = await teamService.GetTeamDetailsServiceModelAsync(id);
+
+            return View(team);  
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(TeamDetailsServiceModel model)
+        {
+            if (await teamService.TeamExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await teamService.TeamHasForCaptain(model.Id, User.Id()) == false && User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            await teamService.DeleteAsync(model.Id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

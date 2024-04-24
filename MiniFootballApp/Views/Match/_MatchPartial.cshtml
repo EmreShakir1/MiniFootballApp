@@ -15,6 +15,11 @@
                 <p><strong>@Model.Result</strong></p>
             </div>
         </div>
+        @if (User.IsAdmin())
+        {
+            <a asp-action="Edit" asp-controller="Match" asp-area="Admin"
+               class="btn btn-success" asp-route-id="@Model.Id">Edit</a>
+        }
     </div>
 }
 else
@@ -29,6 +34,15 @@ else
                 <p><strong>Not played yet!</strong></p>
             </div>
         </div>
+        @if (User.IsAdmin())
+        {
+            <a asp-action="Edit" asp-controller="Match" asp-area="Admin"
+               class="btn btn-success" asp-route-id="@Model.Id">Edit</a>
+        }
     </div>
 }
+
+
+
+
 

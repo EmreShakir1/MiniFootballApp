@@ -12,5 +12,11 @@ namespace MiniFootballApp.Core.Contracts
         Task CreateMatchAsync(MatchFormModel model);
 
         Task<MatchQueryServiceModel> AllMatchesAsync(AllMatchesQueryModel model);
+
+        Task<bool> MatchExistsAsync(int id);
+
+        Task<MatchFormModel> FindMatchById(int id);
+
+        Task EditAsync(int id,MatchFormModel model);
     }
 }

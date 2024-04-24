@@ -30,6 +30,12 @@ namespace MiniFootballApp.Core.Models.Match
         [Required(ErrorMessage = RequiredErrorMessage)]
         public int StadiumId { get; set; }
 
+        [Display(Name = "Result")]
+        public string Result { get; set; } = string.Empty;
+
+        [Display(Name = "Played or not")]
+        public string IsPlayed { get; set; }
+
         public IEnumerable<PlayerTeamServiceModel> Teams { get; set; } = new List<PlayerTeamServiceModel>();
 
 

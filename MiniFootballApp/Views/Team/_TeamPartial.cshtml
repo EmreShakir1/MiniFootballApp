@@ -1,5 +1,6 @@
 ﻿@using MiniFootballApp.Core.Models.Team
 @inject IPlayerService playerService;
+@inject ITeamService teamService;
 
 @model TeamServiceModel
 
@@ -11,10 +12,22 @@
             <h6>@Model.CapitanName</h6>
             <a asp-area="" asp-controller="Team" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
-            @if (await playerService.PlayerIsInTeamAsync(User.Id()) == false && await playerService.IsPlayerAsync(User.Id()))
+            @if (await playerService.PlayerIsInTeamAsync(User.Id()) == false
+            && await playerService.IsPlayerAsync(User.Id())
+            && await playerService.PlayerIsCaptainAsync(User.Id()) == false)
             {
                 <a asp-area="" asp-action="Join" asp-route-id="@Model.Id"
                    class="btn btn-success">Join</a>
+            }
+            @if (await teamService.TeamHasForCaptain(Model.Id, User.Id()) || User.IsAdmin())
+            {
+                <a asp-area="" asp-action="Edit" asp-route-id="@Model.Id"
+                   asp-controller="Team"
+                   class="btn btn-success">Edit</a>
+
+                <a asp-area="" asp-action="Delete" asp-route-id="@Model.Id"
+                   asp-controller="Team"
+                   class="btn btn-success">Delete</a>
             }
         </div>
     </div>

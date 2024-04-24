@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniFootballApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using MiniFootballApp.Infrastucture.Data;
 namespace MiniFootballApp.Infrastucture.Migrations
 {
     [DbContext(typeof(MiniFootballDbContext))]
-    partial class MiniFootballDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240424120647_AddedImageColumnForStadium")]
+    partial class AddedImageColumnForStadium
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,88 +242,6 @@ namespace MiniFootballApp.Infrastucture.Migrations
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasComment("The user of the application");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3091a5c6-7004-42ae-86b3-191578b7e8a6",
-                            AccessFailedCount = 0,
-                            Age = 25,
-                            ConcurrencyStamp = "90d43b75-2b8a-471e-8fab-bd7c9de3a906",
-                            Email = "admin@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            LastName = "Adminov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@MAIL.COM",
-                            NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFBHsZtudGkp8ArMDnPcMQYrzkn4L+zRr2NapY51+cU4pH1Et9GYX/nVCjUjSZYTPw==",
-                            PhoneNumber = "+359888654321",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9f4d3329-5430-43a2-b4f9-b01273a9d641",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@mail.com"
-                        },
-                        new
-                        {
-                            Id = "fba1d28a-2a5a-4ebf-86c9-eb93337731d0",
-                            AccessFailedCount = 0,
-                            Age = 20,
-                            ConcurrencyStamp = "fce3243c-979f-4eb0-b547-c09129457e4e",
-                            Email = "guest@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Guest",
-                            LastName = "Guestov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GUEST@MAIL.COM",
-                            NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENatAEhPpQTW/BbIdLLtICrIymv6V++IrjTv8nNjjz1V/ZPYeGKs8T7uNDHWwXvj6A==",
-                            PhoneNumber = "+359888123456",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ec77005b-72fe-4b46-bec2-68194c5fd751",
-                            TwoFactorEnabled = false,
-                            UserName = "guest@mail.com"
-                        },
-                        new
-                        {
-                            Id = "5ed99122-41b0-4c33-926f-a2c7fc6e6465",
-                            AccessFailedCount = 0,
-                            Age = 25,
-                            ConcurrencyStamp = "05a844b1-f412-407c-8d18-00cb89e2ce68",
-                            Email = "player3@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Player3",
-                            LastName = "Playerov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "PLAYER3@MAIL.COM",
-                            NormalizedUserName = "PLAYER3@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECT5kZdRZhp7oI7vlLI4iVXUIfxanDTCyKmNbOYm70L7pTyAC/3PWhNqL8u0Ykv39Q==",
-                            PhoneNumber = "+359888654322",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "72a1d65d-1717-4f0b-9b4f-04246001f731",
-                            TwoFactorEnabled = false,
-                            UserName = "player3@mail.com"
-                        },
-                        new
-                        {
-                            Id = "f3e37fdb-818a-46ec-ad1e-4d6a3399a1a1",
-                            AccessFailedCount = 0,
-                            Age = 25,
-                            ConcurrencyStamp = "cfbbbcaa-abc9-4d46-9fd3-4a31237629d9",
-                            Email = "player4@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Player4",
-                            LastName = "Playerov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "PLAYER4@MAIL.COM",
-                            NormalizedUserName = "PLAYER4@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB6SPA+b/CPf0743fd2zEEFCwpnX5KFJqOq1rV14T+noKue8TjHeOcTKBwrBRlbvYQ==",
-                            PhoneNumber = "+359888654323",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "dc7ad1b0-f38c-42fb-8c91-60e5316574b9",
-                            TwoFactorEnabled = false,
-                            UserName = "player4@mail.com"
-                        });
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Location", b =>
@@ -350,20 +270,6 @@ namespace MiniFootballApp.Infrastucture.Migrations
                     b.ToTable("Locations");
 
                     b.HasComment("Location of stadium in the app");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Bulgaria str N:1",
-                            Country = "Bulgaria"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Hristo Botev str N:12",
-                            Country = "Bulgaria"
-                        });
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Match", b =>
@@ -454,36 +360,6 @@ namespace MiniFootballApp.Infrastucture.Migrations
                     b.ToTable("Players");
 
                     b.HasComment("Football player");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            KitNumber = 1,
-                            Position = 3,
-                            UserId = "3091a5c6-7004-42ae-86b3-191578b7e8a6"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            KitNumber = 2,
-                            Position = 1,
-                            UserId = "fba1d28a-2a5a-4ebf-86c9-eb93337731d0"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            KitNumber = 11,
-                            Position = 2,
-                            UserId = "5ed99122-41b0-4c33-926f-a2c7fc6e6465"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            KitNumber = 12,
-                            Position = 0,
-                            UserId = "f3e37fdb-818a-46ec-ad1e-4d6a3399a1a1"
-                        });
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Stadium", b =>
@@ -521,24 +397,6 @@ namespace MiniFootballApp.Infrastucture.Migrations
                     b.ToTable("Stadiums");
 
                     b.HasComment("Football stadium");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 100,
-                            ImageUrl = "~/Images/Stadiums/Marakana.jpg",
-                            LocationId = 1,
-                            Name = "Marakana"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Capacity = 200,
-                            ImageUrl = "~/Images/Stadiums/Shipka.webp",
-                            LocationId = 2,
-                            Name = "Shipka"
-                        });
                 });
 
             modelBuilder.Entity("MiniFootballApp.Infrastucture.Data.EntityModels.Team", b =>

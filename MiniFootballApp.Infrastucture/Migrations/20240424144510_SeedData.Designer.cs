@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniFootballApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using MiniFootballApp.Infrastucture.Data;
 namespace MiniFootballApp.Infrastucture.Migrations
 {
     [DbContext(typeof(MiniFootballDbContext))]
-    partial class MiniFootballDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240424144510_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
